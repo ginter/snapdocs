@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' type='text/css' href="<%= url '/app.css' %>">
+  </head>
+  <body>
+    <ol>
+      <% @articles.each do |article| %>
+        <li>
+          <% unless article.saved? %>
+            <form class='save-article' method='POST' action='<%= "/articles/#{article.id}/save" %>'>
+              <input type='submit' value='&#9733;'></input>
+            </form>
+          <% else %>
+            <span class='saved-article'>&#9733;</span>
+          <% end %>
+          <%= article.title %>
+        </li>
+      <% end %>
+    </ul>
+  </body>
+</html>
